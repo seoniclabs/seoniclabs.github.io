@@ -1,0 +1,170 @@
+{
+  "lang": "en",
+  "navigation": {
+    "group": "Product",
+    "groupOrder": 2,
+    "title": "Product overview",
+    "description": "What Seonic inspects today, how it works, and what it is trying to make faster.",
+    "order": 1
+  },
+  "metadata": {
+    "title": "Product Overview",
+    "description": "Understand Seonic's current inspection model, dashboard surfaces, and validation workflow."
+  },
+  "hero": {
+    "eyebrow": "Overview",
+    "title": "A local workspace for Next.js SEO inspection",
+    "lead": "Seonic is built for the moment when a team needs to understand route metadata, preview the result, and decide what to fix without leaving the development environment.",
+    "actions": [
+      {
+        "label": "Core surfaces",
+        "href": "#surfaces",
+        "variant": "primary"
+      },
+      {
+        "label": "Getting started",
+        "href": "/docs",
+        "variant": "secondary"
+      }
+    ]
+  },
+  "sections": [
+    {
+      "id": "problem",
+      "title": "What problem Seonic is solving",
+      "lead": "SEO metadata in Next.js usually gets split across route files, configuration, generated output, and conventions that are easy to forget.",
+      "blocks": [
+        {
+          "type": "paragraph",
+          "content": "That creates a practical problem for engineering teams: it is hard to answer <strong>what this route will expose</strong>, <strong>whether it is good enough</strong>, and <strong>where to change it</strong> without checking multiple files and tools."
+        },
+        {
+          "type": "list",
+          "items": [
+            "Metadata can live in <code>metadata</code>, <code>generateMetadata</code>, generated config, or route-local files.",
+            "Missing canonical URLs, descriptions, OG images, and structured data tend to surface late.",
+            "Duplicate titles and descriptions are easy to miss when routes are reviewed one file at a time.",
+            "Teams need previews and generated artifacts, not just a lint result."
+          ]
+        }
+      ]
+    },
+    {
+      "id": "surfaces",
+      "title": "Core surfaces",
+      "lead": "The current product surface is already organized around the questions developers ask first when they inspect an app.",
+      "blocks": [
+        {
+          "type": "cardGrid",
+          "items": [
+            {
+              "title": "Dashboard overview",
+              "body": "See total routes, average score, routes with issues, warning counts, and coverage across configured, detected, and unconfigured routes."
+            },
+            {
+              "title": "Route detail",
+              "body": "Open a single route to review previews, metadata fields, hreflang, JSON-LD, warnings, score, and guidance for creating a matching <code>.seonic.ts</code> file."
+            },
+            {
+              "title": "Map and filters",
+              "body": "Filter the route map by configured, detected, unconfigured, or issue-heavy paths so you can work on the routes that need attention first."
+            },
+            {
+              "title": "Generated outputs",
+              "body": "Preview or generate sitemap and feed output from the same resolved route data instead of rebuilding those artifacts separately."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "inspection-model",
+      "title": "How the inspection model works",
+      "lead": "Seonic combines route scanning, metadata detection, optional live fetching, and validation into one local loop.",
+      "blocks": [
+        {
+          "type": "steps",
+          "items": [
+            {
+              "title": "Scan the route tree",
+              "body": "The CLI reads <code>app/</code> or <code>src/app/</code>, resolves route paths, and records dynamic segments."
+            },
+            {
+              "title": "Detect existing metadata",
+              "body": "Static <code>metadata</code> exports and <code>generateMetadata</code> are detected from route source so Seonic can distinguish existing metadata from routes that still need configuration."
+            },
+            {
+              "title": "Merge Seonic config",
+              "body": "Global defaults from <code>seonic.config.*</code> and route-level <code>.seonic.ts</code> files are merged into a single route view."
+            },
+            {
+              "title": "Optionally fetch live output",
+              "body": "When <code>devServer.url</code> is configured, Seonic can fetch rendered metadata from the running Next.js server and override static guesses with live output."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "checks",
+      "title": "What Seonic validates today",
+      "lead": "The current warning set is intentionally opinionated toward issues that create bad previews, weak snippets, or inconsistent indexing behavior.",
+      "blocks": [
+        {
+          "type": "list",
+          "items": [
+            "Missing or weak <strong>title</strong> and <strong>description</strong> values, including length checks.",
+            "Missing or invalid <strong>canonical</strong> URLs.",
+            "Missing Open Graph title, description, or image.",
+            "Missing Twitter card type.",
+            "Missing <strong>hreflang</strong> tags when i18n is configured.",
+            "Missing <strong>JSON-LD</strong> structured data.",
+            "Duplicate titles or descriptions across routes.",
+            "Conflicts such as a route excluded from sitemap while still marked indexable."
+          ]
+        }
+      ]
+    },
+    {
+      "id": "roadmap",
+      "title": "What is already real and what is next",
+      "lead": "The roadmap is easiest to understand when separated into present capabilities and the next layer of precision.",
+      "blocks": [
+        {
+          "type": "cardGrid",
+          "items": [
+            {
+              "title": "Already in place",
+              "body": "Route scanning, metadata detection, local dashboard pages, score and warning summaries, sitemap and feed generation, and <code>.seonic.ts</code> file generation."
+            },
+            {
+              "title": "Next layer",
+              "body": "Stronger source trace, deeper metadata extraction, better live route coverage, and a tighter path from warning to the exact code that should change."
+            },
+            {
+              "title": "Longer term",
+              "body": "A broader adapter model for frameworks beyond Next.js once the core Next.js inspection workflow becomes stable."
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "cta": {
+    "title": "Need the provenance story?",
+    "lead": "The source trace page explains what Seonic can identify today, what is still route-level rather than field-level, and why that distinction matters.",
+    "actions": [
+      {
+        "label": "Source trace",
+        "href": "/docs/source-trace",
+        "variant": "primary"
+      },
+      {
+        "label": "View on GitHub",
+        "href": "https://github.com/seoniclabs/seonic",
+        "variant": "secondary",
+        "external": true
+      }
+    ]
+  }
+}

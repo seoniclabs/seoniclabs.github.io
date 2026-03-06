@@ -1,0 +1,173 @@
+{
+  "lang": "ko",
+  "navigation": {
+    "group": "시작하기",
+    "groupOrder": 1,
+    "title": "시작하기",
+    "description": "Seonic이 무엇인지 이해하고, Next.js 앱에 연결해 첫 점검 흐름을 실행합니다.",
+    "order": 1,
+    "isIndex": true
+  },
+  "metadata": {
+    "title": "시작하기",
+    "description": "Seonic의 역할, Next.js 앱 연결 방법, 첫 로컬 점검 흐름을 이해합니다."
+  },
+  "hero": {
+    "eyebrow": "문서",
+    "title": "실제 Seonic 흐름부터 시작하기",
+    "lead": "Seonic은 Next.js 프로젝트를 위한 로컬 SEO 점검 도구입니다. 이 문서에서는 프로젝트 소개, 현재 설정 방식, 처음 실행할 명령까지 한 번에 정리합니다.",
+    "actions": [
+      {
+        "label": "Seonic이란",
+        "href": "#what-is-seonic",
+        "variant": "primary"
+      },
+      {
+        "label": "GitHub",
+        "href": "https://github.com/seoniclabs/seonic",
+        "variant": "secondary",
+        "external": true
+      }
+    ]
+  },
+  "sections": [
+    {
+      "id": "what-is-seonic",
+      "title": "Seonic이란",
+      "lead": "Seonic은 호스팅형 크롤러나 배포 직전 체크리스트가 아닙니다. 각 Next.js 라우트가 실제로 어떤 SEO 값을 노출하는지 로컬에서 점검하는 개발자 도구입니다.",
+      "blocks": [
+        {
+          "type": "paragraph",
+          "content": "핵심은 단순합니다. 엔지니어가 <strong>라우트 출력</strong>, <strong>경고</strong>, <strong>메타데이터가 나온 경로</strong>를 한곳에서 봐야 SEO 문제를 빠르게 수정할 수 있다는 점입니다."
+        },
+        {
+          "type": "cardGrid",
+          "items": [
+            {
+              "title": "기존 메타데이터 점검",
+              "body": "Seonic은 <code>app/</code> 또는 <code>src/app/</code>를 스캔하고, <code>metadata</code> export와 <code>generateMetadata</code>를 감지해 어떤 라우트가 이미 SEO 값을 가지고 있는지 보여줍니다."
+            },
+            {
+              "title": "필요한 곳에 Seonic 설정 추가",
+              "body": "글로벌 기본값은 <code>seonic.config.ts</code>에 두고, 라우트별 메타데이터는 페이지 파일 옆의 <code>.seonic.ts</code>로 보완하거나 생성할 수 있습니다."
+            },
+            {
+              "title": "배포 전에 한 번에 검토",
+              "body": "현재 도구 체인에는 라우트 경고, 점수 계산, SERP 및 OG 미리보기, 사이트맵 생성, 피드 생성, 커버리지 확인용 대시보드가 포함됩니다."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "quickstart",
+      "title": "빠른 시작",
+      "lead": "현재 기준으로 가장 짧은 경로는 Seonic 워크스페이스를 실행하고, 설정 파일로 점검할 Next.js 앱을 연결하는 방식입니다.",
+      "blocks": [
+        {
+          "type": "steps",
+          "items": [
+            {
+              "title": "Seonic 워크스페이스를 클론합니다",
+              "body": "CLI와 대시보드는 현재 메인 워크스페이스 저장소 안에 들어 있습니다.",
+              "code": "git clone https://github.com/seoniclabs/seonic.git\ncd seonic\npnpm install"
+            },
+            {
+              "title": "Next.js 앱에 설정 파일을 만듭니다",
+              "body": "점검할 프로젝트를 Seonic에 연결합니다. 기본 URL, SEO 기본값, 그리고 렌더링된 페이지에서 실시간 메타데이터를 가져오고 싶다면 Next.js dev server 주소를 설정합니다.",
+              "code": "import { defineConfig } from \"seonic\";\n\nexport default defineConfig({\n  baseUrl: \"https://example.com\",\n  devServer: {\n    url: \"http://localhost:3000\"\n  },\n  defaults: {\n    titleTemplate: \"%s | Example\",\n    robots: {\n      index: true,\n      follow: true\n    }\n  }\n});"
+            },
+            {
+              "title": "Next.js 앱과 Seonic을 함께 실행합니다",
+              "body": "먼저 앱 개발 서버를 띄우고, 이어서 해당 프로젝트의 설정 파일 경로를 넘겨 Seonic을 실행합니다.",
+              "code": "# terminal 1 - Next.js 앱 디렉터리\npnpm dev\n\n# terminal 2 - Seonic 워크스페이스\npnpm --filter seonic dev -- --config /absolute/path/to/your-app/seonic.config.ts"
+            },
+            {
+              "title": "대시보드에서 라우트를 점검합니다",
+              "body": "<code>http://localhost:6200</code> 에서 라우트 목록, 경고 개수, SEO 점수, 미리보기, 그리고 생성될 사이트맵 또는 피드 결과를 확인합니다."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "commands",
+      "title": "핵심 명령",
+      "lead": "현재 CLI는 의도적으로 좁은 범위에 집중합니다. 로컬 점검 루프와 실제로 많이 필요한 출력만 먼저 다룹니다.",
+      "blocks": [
+        {
+          "type": "cardGrid",
+          "items": [
+            {
+              "title": "seonic dev",
+              "body": "로컬 대시보드를 실행하고, 라우트를 스캔하고, 메타데이터를 검증하며, 설정된 경우 Next.js dev server에서 렌더링 결과를 가져옵니다."
+            },
+            {
+              "title": "seonic build",
+              "body": "동일한 라우트 집합을 스캔한 뒤 설정에 따라 <code>sitemap.xml</code> 과 <code>feed.xml</code> 을 생성합니다."
+            },
+            {
+              "title": "seonic generate",
+              "body": "특정 라우트 또는 전체 라우트에 대해 <code>.seonic.ts</code> 파일을 생성해, 감지된 메타데이터를 관리 가능한 설정으로 바꿉니다."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "first-session",
+      "title": "첫 실행에서 확인해야 할 것",
+      "lead": "처음 한 번 돌려보는 목적은 문구를 다듬는 것보다, 앱의 현재 SEO 구조를 빠르게 파악하는 데 있습니다.",
+      "blocks": [
+        {
+          "type": "list",
+          "items": [
+            "어떤 라우트가 이미 설정되어 있고 어떤 라우트가 아직 <strong>미설정</strong> 상태인지.",
+            "메타데이터가 <code>metadata</code>, <code>generateMetadata</code>, Seonic 설정 중 어디에서 오는지.",
+            "어떤 경고가 먼저 드러나는지: title, description, canonical, OG image, JSON-LD, hreflang 누락 또는 중복 메타데이터.",
+            "미리보기와 생성 결과가 예상한 라우트 구조와 실제로 맞는지."
+          ]
+        }
+      ]
+    },
+    {
+      "id": "scope",
+      "title": "현재 범위",
+      "lead": "제품 방향은 크지만, 현재 구현은 의도적으로 좁고 선명하게 잡혀 있습니다.",
+      "blocks": [
+        {
+          "type": "list",
+          "items": [
+            "우선 <strong>Next.js</strong> 프로젝트에 집중합니다.",
+            "<code>app/</code> 및 <code>src/app/</code> 기반 라우트 트리를 스캔합니다.",
+            "읽기 전용 스캔으로 기존 <code>metadata</code> export와 <code>generateMetadata</code>를 감지합니다.",
+            "글로벌 설정, 라우트별 <code>.seonic.ts</code>, 대시보드 미리보기, 사이트맵 출력, 피드 출력, 파일 생성 기능을 포함합니다.",
+            "더 정밀한 source trace와 프레임워크 확장은 아직 진행 중입니다."
+          ]
+        },
+        {
+          "type": "callout",
+          "variant": "info",
+          "title": "초기 제품 메모",
+          "content": "Seonic은 아직 초기 단계이기 때문에, 현재 흐름은 호스팅형 온보딩보다 로컬 워크스페이스, Next.js 앱, 그리고 좁은 범위의 CLI를 전제로 설계되어 있습니다."
+        }
+      ]
+    }
+  ],
+  "cta": {
+    "title": "제품 구조를 더 보고 싶다면",
+    "lead": "개요 문서에서는 현재 Seonic 설계 안에서 라우트 스캔, 검증, 미리보기, 생성이 어떻게 연결되는지 설명합니다.",
+    "actions": [
+      {
+        "label": "제품 개요",
+        "href": "/docs/product-overview",
+        "variant": "primary"
+      },
+      {
+        "label": "홈으로 돌아가기",
+        "href": "/",
+        "variant": "secondary"
+      }
+    ]
+  }
+}

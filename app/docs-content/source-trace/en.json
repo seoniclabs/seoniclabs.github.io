@@ -1,0 +1,130 @@
+{
+  "lang": "en",
+  "navigation": {
+    "group": "Product",
+    "groupOrder": 2,
+    "title": "Source trace",
+    "description": "What Seonic can trace today, what remains route-level, and where the model should get sharper.",
+    "order": 1,
+    "parentSlug": "product-overview"
+  },
+  "metadata": {
+    "title": "Source Trace",
+    "description": "Understand how Seonic identifies metadata sources today and what stronger source trace should mean for the product."
+  },
+  "hero": {
+    "eyebrow": "Product",
+    "title": "Source trace starts with provenance",
+    "lead": "Seonic is most useful when a warning tells you not only that something is wrong, but also how that value entered the route. Today the product already tracks important provenance signals; the next step is making that trail more precise.",
+    "actions": [
+      {
+        "label": "Why it matters",
+        "href": "#why-it-matters",
+        "variant": "primary"
+      },
+      {
+        "label": "Back to overview",
+        "href": "/docs/product-overview",
+        "variant": "secondary"
+      }
+    ]
+  },
+  "sections": [
+    {
+      "id": "why-it-matters",
+      "title": "Why it matters",
+      "lead": "An issue list without provenance creates extra search work for the engineer who has to fix it.",
+      "blocks": [
+        {
+          "type": "cardGrid",
+          "items": [
+            {
+              "title": "Less guessing",
+              "body": "It is not enough to say that a canonical URL is missing. Teams need to know whether the route is fully unconfigured, partially detected, or already backed by existing Next.js metadata."
+            },
+            {
+              "title": "Faster fixes",
+              "body": "The shorter the path from a warning to the route file or metadata source, the easier it is to move from inspection to change."
+            },
+            {
+              "title": "Safer adoption",
+              "body": "Teams can adopt Seonic incrementally when they can see what came from existing metadata and what still needs explicit Seonic configuration."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "current-model",
+      "title": "What Seonic can trace today",
+      "lead": "Current provenance is strongest at the route and source-model level rather than the exact field-and-line level.",
+      "blocks": [
+        {
+          "type": "steps",
+          "items": [
+            {
+              "title": "Route discovery",
+              "body": "Seonic maps route paths to files in <code>app/</code> or <code>src/app/</code> and keeps track of dynamic segments."
+            },
+            {
+              "title": "Metadata source detection",
+              "body": "For each route, Seonic can detect whether values came from a static <code>metadata</code> export, a dynamic <code>generateMetadata</code> function, Seonic config, or a merged combination."
+            },
+            {
+              "title": "Live server override",
+              "body": "When <code>devServer.url</code> is configured, rendered metadata fetched from the running Next.js app can replace earlier static assumptions for supported routes."
+            },
+            {
+              "title": "Configuration guidance",
+              "body": "In the UI, configured, detected, and unconfigured states drive the guidance for generating or creating <code>.seonic.ts</code> files."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "what-you-see",
+      "title": "How that shows up in the product",
+      "lead": "Even before field-level trace is complete, provenance already changes how the dashboard is read.",
+      "blocks": [
+        {
+          "type": "list",
+          "items": [
+            "Routes can be separated into <strong>configured</strong>, <strong>detected</strong>, and <strong>unconfigured</strong> groups.",
+            "Detected routes are labeled as <strong>static metadata</strong> or <strong>dynamic metadata</strong> so the team knows what kind of Next.js source exists already.",
+            "Warnings and score calculations are skipped for routes that are still completely unconfigured, which keeps the dashboard honest about what is missing versus what is merely weak.",
+            "Generate flows can take detected data and turn it into route-level Seonic files instead of forcing teams to start from empty config."
+          ]
+        }
+      ]
+    },
+    {
+      "id": "next-step",
+      "title": "What stronger source trace should mean",
+      "lead": "The long-term goal is not a vague \"source trace\" badge. It is a materially shorter path from a bad route preview to the exact code that should change.",
+      "blocks": [
+        {
+          "type": "callout",
+          "variant": "info",
+          "title": "Current limit",
+          "content": "Today Seonic mostly traces provenance at the route, config, and metadata-source level. Precise field-level trace back to a symbol, export, or exact code location is still a product direction rather than a finished surface."
+        },
+        {
+          "type": "paragraph",
+          "content": "That distinction matters because it keeps the docs honest. The current product can already explain <strong>what kind of source exists</strong> and <strong>which routes are governed by it</strong>. The next layer is showing the exact place engineers should open next."
+        }
+      ]
+    }
+  ],
+  "cta": {
+    "title": "Return to the broader model",
+    "lead": "Go back to the product overview for the full inspection loop: route scan, validation, previews, and generated outputs.",
+    "actions": [
+      {
+        "label": "Open product overview",
+        "href": "/docs/product-overview",
+        "variant": "primary"
+      }
+    ]
+  }
+}

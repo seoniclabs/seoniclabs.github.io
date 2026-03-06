@@ -1,0 +1,10 @@
+node_modules
+.next
+out
+.env*
+.playwright-mcp/
+playwright-report
+test-results
+npm-debug.log*
+tsconfig.tsbuildinfo
+.DS_Store

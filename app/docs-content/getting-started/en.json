@@ -1,0 +1,173 @@
+{
+  "lang": "en",
+  "navigation": {
+    "group": "Start Here",
+    "groupOrder": 1,
+    "title": "Getting started",
+    "description": "Understand Seonic, connect it to a Next.js app, and run the first inspection flow.",
+    "order": 1,
+    "isIndex": true
+  },
+  "metadata": {
+    "title": "Getting Started",
+    "description": "Learn what Seonic is, how it connects to a Next.js app, and what the first local workflow looks like."
+  },
+  "hero": {
+    "eyebrow": "Docs",
+    "title": "Start with the actual Seonic workflow",
+    "lead": "Seonic is a local SEO inspector for Next.js projects. Start here if you need a clear product summary, the current setup path, and the first commands worth running.",
+    "actions": [
+      {
+        "label": "What Seonic is",
+        "href": "#what-is-seonic",
+        "variant": "primary"
+      },
+      {
+        "label": "GitHub",
+        "href": "https://github.com/seoniclabs/seonic",
+        "variant": "secondary",
+        "external": true
+      }
+    ]
+  },
+  "sections": [
+    {
+      "id": "what-is-seonic",
+      "title": "What Seonic is",
+      "lead": "Seonic is not a hosted crawler or a release-only checklist. It is a local developer tool that helps teams inspect what each Next.js route is exposing before they ship.",
+      "blocks": [
+        {
+          "type": "paragraph",
+          "content": "The project is built around one simple idea: SEO data is easier to fix when engineers can see <strong>route output</strong>, <strong>warnings</strong>, and <strong>where the metadata came from</strong> in the same workspace."
+        },
+        {
+          "type": "cardGrid",
+          "items": [
+            {
+              "title": "Inspect existing metadata",
+              "body": "Seonic scans <code>app/</code> or <code>src/app/</code>, detects <code>metadata</code> exports and <code>generateMetadata</code>, and shows which routes already expose SEO values."
+            },
+            {
+              "title": "Add Seonic config where needed",
+              "body": "Global defaults live in <code>seonic.config.ts</code>. Route-level metadata can be added with generated or hand-written <code>.seonic.ts</code> files next to route files."
+            },
+            {
+              "title": "Review before release",
+              "body": "The current toolchain includes route warnings, score calculation, SERP and OG previews, sitemap generation, feed generation, and a dashboard for inspecting coverage."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "quickstart",
+      "title": "Quick start",
+      "lead": "The shortest path today is to run Seonic from the workspace and point it at a Next.js app with a config file.",
+      "blocks": [
+        {
+          "type": "steps",
+          "items": [
+            {
+              "title": "Clone the Seonic workspace",
+              "body": "The CLI and dashboard currently live inside the main workspace repository.",
+              "code": "git clone https://github.com/seoniclabs/seonic.git\ncd seonic\npnpm install"
+            },
+            {
+              "title": "Create a config file in your Next.js app",
+              "body": "Point Seonic at the project you want to inspect. Set your base URL, SEO defaults, and the local Next.js dev server if you want live metadata fetched from rendered pages.",
+              "code": "import { defineConfig } from \"seonic\";\n\nexport default defineConfig({\n  baseUrl: \"https://example.com\",\n  devServer: {\n    url: \"http://localhost:3000\"\n  },\n  defaults: {\n    titleTemplate: \"%s | Example\",\n    robots: {\n      index: true,\n      follow: true\n    }\n  }\n});"
+            },
+            {
+              "title": "Start your Next.js app and Seonic",
+              "body": "Run your app server first, then start Seonic with the config path for that project.",
+              "code": "# terminal 1 - inside your Next.js app\npnpm dev\n\n# terminal 2 - inside the Seonic workspace\npnpm --filter seonic dev -- --config /absolute/path/to/your-app/seonic.config.ts"
+            },
+            {
+              "title": "Open the dashboard and inspect routes",
+              "body": "Visit <code>http://localhost:6200</code> to review route inventory, warning counts, SEO scores, route previews, and generated sitemap or feed output."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "commands",
+      "title": "Core commands",
+      "lead": "The current CLI is narrow on purpose. It focuses on the local inspection loop and a small set of outputs teams actually need.",
+      "blocks": [
+        {
+          "type": "cardGrid",
+          "items": [
+            {
+              "title": "seonic dev",
+              "body": "Starts the local dashboard, scans routes, validates metadata, and optionally fetches live metadata from the Next.js dev server."
+            },
+            {
+              "title": "seonic build",
+              "body": "Scans the same route set and generates <code>sitemap.xml</code> and <code>feed.xml</code> using your Seonic config."
+            },
+            {
+              "title": "seonic generate",
+              "body": "Creates <code>.seonic.ts</code> files for specific routes or for every eligible route, so teams can turn detected metadata into managed config."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "first-session",
+      "title": "What the first session should answer",
+      "lead": "A useful first run is less about polishing copy and more about understanding the current SEO shape of the app.",
+      "blocks": [
+        {
+          "type": "list",
+          "items": [
+            "Which routes are already configured and which routes are still <strong>unconfigured</strong>.",
+            "Whether metadata is coming from <code>metadata</code>, <code>generateMetadata</code>, or Seonic config.",
+            "Which warnings show up first: missing title, description, canonical, OG image, JSON-LD, hreflang, or duplicate metadata.",
+            "Whether the previewed output and generated artifacts match the route structure you expected."
+          ]
+        }
+      ]
+    },
+    {
+      "id": "scope",
+      "title": "Current scope",
+      "lead": "The product direction is ambitious, but the current implementation is intentionally focused.",
+      "blocks": [
+        {
+          "type": "list",
+          "items": [
+            "Focused on <strong>Next.js</strong> projects first.",
+            "Scans <code>app/</code> and <code>src/app/</code> based route trees.",
+            "Detects existing <code>metadata</code> exports and <code>generateMetadata</code> with a read-only scan.",
+            "Supports global config, route-level <code>.seonic.ts</code>, dashboard previews, sitemap output, feed output, and file generation.",
+            "More precise source trace and broader framework support are still in progress."
+          ]
+        },
+        {
+          "type": "callout",
+          "variant": "info",
+          "title": "Early product note",
+          "content": "Seonic is still early, so the current workflow assumes a local workspace, a Next.js app, and a small CLI surface rather than a polished hosted onboarding flow."
+        }
+      ]
+    }
+  ],
+  "cta": {
+    "title": "Need the product model next?",
+    "lead": "The overview page explains how route scanning, validation, previews, and generation fit together in the current Seonic design.",
+    "actions": [
+      {
+        "label": "Product overview",
+        "href": "/docs/product-overview",
+        "variant": "primary"
+      },
+      {
+        "label": "Back to home",
+        "href": "/",
+        "variant": "secondary"
+      }
+    ]
+  }
+}

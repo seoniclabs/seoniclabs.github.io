@@ -1,0 +1,170 @@
+{
+  "lang": "ko",
+  "navigation": {
+    "group": "제품",
+    "groupOrder": 2,
+    "title": "제품 개요",
+    "description": "Seonic이 지금 무엇을 점검하고, 어떻게 동작하며, 무엇을 더 빠르게 만들려는지 설명합니다.",
+    "order": 1
+  },
+  "metadata": {
+    "title": "제품 개요",
+    "description": "Seonic의 현재 점검 모델, 대시보드 화면, 검증 흐름을 이해합니다."
+  },
+  "hero": {
+    "eyebrow": "개요",
+    "title": "Next.js SEO를 로컬에서 점검하는 워크스페이스",
+    "lead": "Seonic은 팀이 라우트 메타데이터를 이해하고, 결과를 미리보고, 무엇을 고칠지 결정해야 하는 순간을 개발 환경 안에서 해결하려는 도구입니다.",
+    "actions": [
+      {
+        "label": "핵심 화면",
+        "href": "#surfaces",
+        "variant": "primary"
+      },
+      {
+        "label": "시작하기",
+        "href": "/docs",
+        "variant": "secondary"
+      }
+    ]
+  },
+  "sections": [
+    {
+      "id": "problem",
+      "title": "Seonic이 풀려는 문제",
+      "lead": "Next.js의 SEO 메타데이터는 보통 라우트 파일, 설정, 생성 결과, 관례에 흩어져 있어서 전체 상태를 파악하기 어렵습니다.",
+      "blocks": [
+        {
+          "type": "paragraph",
+          "content": "그래서 엔지니어링 팀은 <strong>이 라우트가 실제로 무엇을 노출하는지</strong>, <strong>그 상태가 충분히 괜찮은지</strong>, <strong>어디를 고쳐야 하는지</strong>를 확인하려고 여러 파일과 도구를 오가게 됩니다."
+        },
+        {
+          "type": "list",
+          "items": [
+            "메타데이터는 <code>metadata</code>, <code>generateMetadata</code>, 생성된 설정, 라우트별 파일에 나뉘어 있을 수 있습니다.",
+            "canonical, description, OG image, 구조화 데이터 누락은 늦게 발견되기 쉽습니다.",
+            "title이나 description 중복은 파일 단위 검토만으로는 놓치기 쉽습니다.",
+            "팀은 단순 lint 결과보다 미리보기와 생성 결과까지 함께 확인해야 합니다."
+          ]
+        }
+      ]
+    },
+    {
+      "id": "surfaces",
+      "title": "핵심 화면",
+      "lead": "현재 제품 화면은 개발자가 앱을 점검할 때 가장 먼저 던지는 질문을 중심으로 구성되어 있습니다.",
+      "blocks": [
+        {
+          "type": "cardGrid",
+          "items": [
+            {
+              "title": "대시보드 개요",
+              "body": "전체 라우트 수, 평균 점수, 이슈가 있는 라우트, 경고 수, 설정됨/감지됨/미설정 커버리지를 한 번에 봅니다."
+            },
+            {
+              "title": "라우트 상세",
+              "body": "개별 라우트에서 미리보기, 메타 필드, hreflang, JSON-LD, 경고, 점수, 그리고 대응하는 <code>.seonic.ts</code> 생성 가이드를 확인합니다."
+            },
+            {
+              "title": "맵과 필터",
+              "body": "설정됨, 감지됨, 미설정, 이슈 있음 상태로 라우트를 필터링해 우선 손봐야 할 경로를 빠르게 추립니다."
+            },
+            {
+              "title": "생성 결과",
+              "body": "분리된 빌드 스크립트를 따로 짜지 않아도, 같은 라우트 데이터에서 사이트맵과 피드 결과를 미리보거나 생성할 수 있습니다."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "inspection-model",
+      "title": "점검 모델이 동작하는 방식",
+      "lead": "Seonic은 라우트 스캔, 메타데이터 감지, 선택적 실시간 fetch, 검증을 하나의 로컬 루프로 묶습니다.",
+      "blocks": [
+        {
+          "type": "steps",
+          "items": [
+            {
+              "title": "라우트 트리를 스캔합니다",
+              "body": "CLI는 <code>app/</code> 또는 <code>src/app/</code>를 읽고, 라우트 경로와 동적 세그먼트를 정리합니다."
+            },
+            {
+              "title": "기존 메타데이터를 감지합니다",
+              "body": "정적 <code>metadata</code> export와 <code>generateMetadata</code>를 감지해, 이미 메타데이터가 있는 라우트와 아직 설정이 필요한 라우트를 구분합니다."
+            },
+            {
+              "title": "Seonic 설정을 병합합니다",
+              "body": "<code>seonic.config.*</code>의 글로벌 기본값과 라우트별 <code>.seonic.ts</code>를 합쳐 하나의 라우트 뷰를 만듭니다."
+            },
+            {
+              "title": "필요하면 실시간 결과를 가져옵니다",
+              "body": "<code>devServer.url</code>이 설정되면, 실행 중인 Next.js 서버에서 렌더링된 메타데이터를 가져와 정적 추정값보다 더 실제에 가까운 결과로 덮어쓸 수 있습니다."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "checks",
+      "title": "현재 검증하는 항목",
+      "lead": "지금의 경고 세트는 나쁜 미리보기, 약한 검색 스니펫, 불일치한 인덱싱 동작으로 이어지는 문제에 의도적으로 집중합니다.",
+      "blocks": [
+        {
+          "type": "list",
+          "items": [
+            "길이 검사까지 포함한 <strong>title</strong> 과 <strong>description</strong> 누락 또는 품질 문제.",
+            "누락되었거나 잘못된 <strong>canonical</strong> URL.",
+            "Open Graph title, description, image 누락.",
+            "Twitter card type 누락.",
+            "i18n 설정 시 <strong>hreflang</strong> 태그 누락.",
+            "<strong>JSON-LD</strong> 구조화 데이터 누락.",
+            "라우트 간 title 또는 description 중복.",
+            "사이트맵에서는 제외했지만 여전히 index 가능하도록 남아 있는 충돌 같은 상태."
+          ]
+        }
+      ]
+    },
+    {
+      "id": "roadmap",
+      "title": "이미 있는 것과 다음 단계",
+      "lead": "로드맵은 현재 가능한 것과, 다음에 더 정밀해질 부분을 나눠서 보는 편이 가장 명확합니다.",
+      "blocks": [
+        {
+          "type": "cardGrid",
+          "items": [
+            {
+              "title": "이미 구현된 것",
+              "body": "라우트 스캔, 메타데이터 감지, 로컬 대시보드 화면, 점수 및 경고 요약, 사이트맵과 피드 생성, <code>.seonic.ts</code> 파일 생성."
+            },
+            {
+              "title": "다음 단계",
+              "body": "더 강한 source trace, 더 깊은 메타데이터 추출, 더 넓은 실시간 라우트 커버리지, 경고에서 정확히 고칠 코드로 이어지는 더 짧은 경로."
+            },
+            {
+              "title": "장기 방향",
+              "body": "핵심 Next.js 점검 흐름이 안정되면, Next.js 밖의 프레임워크까지 확장할 수 있는 어댑터 모델."
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "cta": {
+    "title": "메타데이터 출처를 더 보고 싶다면",
+    "lead": "source trace 문서에서는 지금 Seonic이 어디까지 식별할 수 있는지, 아직 필드 단위까지 내려가지 않은 부분이 무엇인지, 그리고 그 차이가 왜 중요한지 설명합니다.",
+    "actions": [
+      {
+        "label": "Source trace",
+        "href": "/docs/source-trace",
+        "variant": "primary"
+      },
+      {
+        "label": "GitHub 보기",
+        "href": "https://github.com/seoniclabs/seonic",
+        "variant": "secondary",
+        "external": true
+      }
+    ]
+  }
+}

@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
+  <defs>
+    <linearGradient id="seonicGradient" x1="0%" x2="100%" y1="0%" y2="100%">
+      <stop offset="0%" stop-color="#b7f522" />
+      <stop offset="100%" stop-color="#ff8451" />
+    </linearGradient>
+  </defs>
+  <rect width="64" height="64" rx="18" fill="#13212b" />
+  <path
+    d="M18 20.5C18 15.8056 21.8056 12 26.5 12H45L33.5 22.5H27.5C25.0147 22.5 23 24.5147 23 27V28C23 30.4853 25.0147 32.5 27.5 32.5H36.5C43.4036 32.5 49 38.0964 49 45C49 49.6944 45.1944 53.5 40.5 53.5H19L30.5 43H39.5C41.9853 43 44 40.9853 44 38.5C44 36.0147 41.9853 34 39.5 34H27.5C20.5964 34 15 28.4036 15 21.5V20.5H18Z"
+    fill="url(#seonicGradient)"
+  />
+</svg>

@@ -1,0 +1,130 @@
+{
+  "lang": "ko",
+  "navigation": {
+    "group": "제품",
+    "groupOrder": 2,
+    "title": "Source trace",
+    "description": "지금 Seonic이 무엇을 추적할 수 있는지, 아직 라우트 수준에 머무는 부분은 무엇인지 설명합니다.",
+    "order": 1,
+    "parentSlug": "product-overview"
+  },
+  "metadata": {
+    "title": "Source Trace",
+    "description": "Seonic이 현재 메타데이터 출처를 어떻게 식별하는지, 더 강한 source trace가 제품에서 무엇을 의미하는지 설명합니다."
+  },
+  "hero": {
+    "eyebrow": "제품",
+    "title": "source trace는 출처 파악에서 시작합니다",
+    "lead": "Seonic은 경고가 단순히 문제만 말하는 데서 끝나지 않고, 그 값이 어떤 경로로 라우트에 들어왔는지까지 알려줄 때 훨씬 유용해집니다. 현재도 중요한 출처 신호를 추적하고 있고, 다음 단계는 그 경로를 더 정밀하게 만드는 것입니다.",
+    "actions": [
+      {
+        "label": "왜 중요한가",
+        "href": "#why-it-matters",
+        "variant": "primary"
+      },
+      {
+        "label": "개요로 돌아가기",
+        "href": "/docs/product-overview",
+        "variant": "secondary"
+      }
+    ]
+  },
+  "sections": [
+    {
+      "id": "why-it-matters",
+      "title": "왜 중요한가",
+      "lead": "출처 정보가 없는 이슈 목록은 결국 수정해야 하는 엔지니어에게 추가 탐색 비용을 남깁니다.",
+      "blocks": [
+        {
+          "type": "cardGrid",
+          "items": [
+            {
+              "title": "추측을 줄입니다",
+              "body": "canonical URL이 빠졌다고 말하는 것만으로는 부족합니다. 그 라우트가 완전히 미설정인지, 일부 메타데이터가 감지된 상태인지, 이미 Next.js 메타데이터를 갖고 있는지까지 알아야 다음 행동이 분명해집니다."
+            },
+            {
+              "title": "수정이 빨라집니다",
+              "body": "경고에서 라우트 파일이나 메타데이터 출처까지 가는 경로가 짧을수록, 점검에서 수정으로 넘어가는 속도가 빨라집니다."
+            },
+            {
+              "title": "도입이 쉬워집니다",
+              "body": "기존 메타데이터에서 온 값과, 아직 명시적인 Seonic 설정이 필요한 값을 구분해 보여줘야 팀이 점진적으로 Seonic을 도입할 수 있습니다."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "current-model",
+      "title": "지금 Seonic이 추적할 수 있는 것",
+      "lead": "현재 출처 추적은 정확한 필드와 코드 줄 수준보다는, 라우트와 소스 모델 수준에서 가장 강하게 작동합니다.",
+      "blocks": [
+        {
+          "type": "steps",
+          "items": [
+            {
+              "title": "라우트 발견",
+              "body": "Seonic은 <code>app/</code> 또는 <code>src/app/</code> 안의 파일과 라우트 경로를 연결하고, 동적 세그먼트를 함께 기록합니다."
+            },
+            {
+              "title": "메타데이터 출처 감지",
+              "body": "각 라우트에 대해 정적 <code>metadata</code> export, 동적 <code>generateMetadata</code>, Seonic 설정, 또는 이들의 병합 결과인지 구분할 수 있습니다."
+            },
+            {
+              "title": "라이브 서버 결과 반영",
+              "body": "<code>devServer.url</code>이 설정되면, 실행 중인 Next.js 앱에서 가져온 렌더링 메타데이터가 지원되는 라우트에 대해 기존 정적 추정값을 대체할 수 있습니다."
+            },
+            {
+              "title": "설정 가이드 연결",
+              "body": "UI에서는 configured, detected, unconfigured 상태를 바탕으로 <code>.seonic.ts</code> 파일을 생성하거나 직접 만드는 가이드를 보여줍니다."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "what-you-see",
+      "title": "제품에서 어떻게 보이는가",
+      "lead": "필드 단위 source trace가 완성되기 전에도, 출처 정보는 대시보드를 읽는 방식을 이미 바꿉니다.",
+      "blocks": [
+        {
+          "type": "list",
+          "items": [
+            "라우트는 <strong>configured</strong>, <strong>detected</strong>, <strong>unconfigured</strong> 그룹으로 나눠 볼 수 있습니다.",
+            "감지된 라우트는 <strong>static metadata</strong> 또는 <strong>dynamic metadata</strong> 배지로 표시되어, 이미 어떤 종류의 Next.js 메타데이터가 있는지 바로 알 수 있습니다.",
+            "아직 완전히 미설정된 라우트는 경고와 점수 계산 대상에서 제외되어, 무엇이 비어 있는지와 무엇이 약한지를 솔직하게 구분합니다.",
+            "generate 흐름은 감지된 데이터를 받아 빈 설정에서 시작하지 않고도 라우트별 Seonic 파일로 옮겨올 수 있게 돕습니다."
+          ]
+        }
+      ]
+    },
+    {
+      "id": "next-step",
+      "title": "더 강한 source trace가 의미하는 것",
+      "lead": "장기 목표는 막연한 \"source trace\" 배지가 아니라, 좋지 않은 라우트 미리보기에서 정확히 고칠 코드로 더 짧게 이동하는 것입니다.",
+      "blocks": [
+        {
+          "type": "callout",
+          "variant": "info",
+          "title": "현재 한계",
+          "content": "지금의 Seonic은 주로 라우트, 설정, 메타데이터 출처 수준에서 provenance를 추적합니다. 특정 필드를 어떤 심볼, export, 코드 위치로 되돌릴지는 아직 방향성에 더 가깝고, 완성된 화면은 아닙니다."
+        },
+        {
+          "type": "paragraph",
+          "content": "이 구분은 중요합니다. 현재 제품은 이미 <strong>어떤 종류의 소스가 존재하는지</strong>, <strong>어떤 라우트가 그 영향을 받는지</strong>를 설명할 수 있습니다. 다음 단계는 엔지니어가 바로 열어야 할 정확한 지점을 보여주는 것입니다."
+        }
+      ]
+    }
+  ],
+  "cta": {
+    "title": "더 큰 흐름으로 돌아가기",
+    "lead": "전체 점검 루프인 라우트 스캔, 검증, 미리보기, 생성 결과는 제품 개요 문서에서 다시 볼 수 있습니다.",
+    "actions": [
+      {
+        "label": "제품 개요 열기",
+        "href": "/docs/product-overview",
+        "variant": "primary"
+      }
+    ]
+  }
+}
